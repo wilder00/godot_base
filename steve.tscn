@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://drmca6c1rmspk"]
+[gd_scene load_steps=6 format=3 uid="uid://drmca6c1rmspk"]
 
 [ext_resource type="Script" path="res://steve.gd" id="1_5nha6"]
 
@@ -8,13 +8,20 @@ albedo_color = Color(0.40068, 0.54, 0.0756, 1)
 [sub_resource type="BoxMesh" id="BoxMesh_4vis7"]
 material = SubResource("StandardMaterial3D_xx40c")
 
+[sub_resource type="CylinderMesh" id="CylinderMesh_eu510"]
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_7up08"]
 
 [node name="Steve" type="CharacterBody3D"]
+collision_mask = 30
 script = ExtResource("1_5nha6")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_4vis7")
+
+[node name="face" type="MeshInstance3D" parent="MeshInstance3D"]
+transform = Transform3D(0.495667, 0, 0, 0, -2.26054e-08, 0.495667, 0, -0.517152, -2.16663e-08, 0, 0.241252, -0.0209177)
+mesh = SubResource("CylinderMesh_eu510")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_7up08")
@@ -27,3 +34,6 @@ transform = Transform3D(1, 0, 0, 0, 0.862673, 0.505763, 0, -0.505763, 0.862673, 
 
 [node name="Camera3D" type="Camera3D" parent="Camera_Controller/Camerta_Target"]
 current = true
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+collision_mask = 2
